@@ -75,34 +75,7 @@ export default function NativeSelectDemo({ spreadType, source }: NativeSelectDem
       {
         exchange ?
           <Grid container spacing={2} justifyContent="space-between" sx={{ mt: '3.25rem' }}>
-            <Grid xs={12} md={6} display="flex" flexDirection={"column"} sx={{ mt: '7.5px' }}>
-              <Grid display="flex" justifyContent="center">
-                <Typography>
-                  {"PESOS ARGENTINOS"}
-                </Typography>
-              </Grid>
-              <Grid display="flex" direction="column" justifyContent="center">
-                <FormControl fullWidth>
-                  <NumericFormat
-                    onKeyUp={(event: any) => handleArgsInput(event.target.value as string)}
-                    inputRef={argsRef}
-
-                    onCopyCapture={(event: any) => handleArgsInput(event.target.value as string)}
-                    allowLeadingZeros
-                    customInput={TextField}
-                    decimalSeparator=","
-                    thousandSeparator="."
-                    decimalScale={3}
-                    fullWidth
-                    autoComplete='off'
-                    value={argsPrice}
-                    sx={{ input: { textAlign: "center", fontSize: '3rem' } }}
-                    isAllowed={({ floatValue }: NumberFormatValues): boolean => floatValue === undefined || floatValue <= MAX_LIMIT}
-                  />
-                </FormControl>
-              </Grid>
-            </Grid>
-
+            
             <Grid xs={12} md={6} display="flex" flexDirection={"column"}>
               <Grid xs={12} sx={{ lineHeight: "1.8px" }} display="flex" justifyContent="center" >
                 <FormControl fullWidth >
@@ -132,6 +105,34 @@ export default function NativeSelectDemo({ spreadType, source }: NativeSelectDem
                     autoComplete='off'
                     fullWidth
                     value={dolarPrice}
+                    sx={{ input: { textAlign: "center", fontSize: '3rem' } }}
+                    isAllowed={({ floatValue }: NumberFormatValues): boolean => floatValue === undefined || floatValue <= MAX_LIMIT}
+                  />
+                </FormControl>
+              </Grid>
+            </Grid>
+
+            <Grid xs={12} md={6} display="flex" flexDirection={"column"} sx={{ mt: '7.5px' }}>
+              <Grid display="flex" justifyContent="center">
+                <Typography>
+                  {"PESOS ARGENTINOS"}
+                </Typography>
+              </Grid>
+              <Grid display="flex" direction="column" justifyContent="center">
+                <FormControl fullWidth>
+                  <NumericFormat
+                    onKeyUp={(event: any) => handleArgsInput(event.target.value as string)}
+                    inputRef={argsRef}
+
+                    onCopyCapture={(event: any) => handleArgsInput(event.target.value as string)}
+                    allowLeadingZeros
+                    customInput={TextField}
+                    decimalSeparator=","
+                    thousandSeparator="."
+                    decimalScale={3}
+                    fullWidth
+                    autoComplete='off'
+                    value={argsPrice}
                     sx={{ input: { textAlign: "center", fontSize: '3rem' } }}
                     isAllowed={({ floatValue }: NumberFormatValues): boolean => floatValue === undefined || floatValue <= MAX_LIMIT}
                   />
