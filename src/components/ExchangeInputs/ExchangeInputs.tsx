@@ -25,8 +25,8 @@ export default function NativeSelectDemo({ spreadType, source }: NativeSelectDem
   const [argsPrice, setArgsPrice] = useState<string>(INITIAL_PRICE_VALUE);
   const [exchangeType, setExchangeType] = useState<any>(INITIAL_TYPE_VALUE)
 
-  const dolarRef = useRef();
-  const argsRef = useRef();
+  const dolarRef = useRef<any>();
+  const argsRef = useRef<any>();
 
   useEffect(() => {
     const currency = new Currencies(source);
