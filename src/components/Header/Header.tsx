@@ -10,15 +10,15 @@ export default function Header() {
       alignItems="center"
 
       sx={{
-        height: '4rem',
+        height: '6rem',
         backgroundColor: 'primary.dark',
         color: 'primary.contrastText',
         '&:hover': {
-          opacity: [0.9, 0.8, 0.7],
+          opacity: 'primary.dark',
         },
       }}
     >
-      <Typography variant="subtitle1" component="h2" align="center">
+      <Typography variant="subtitle1" sx={{fontWeight: 'bold'}} component="h3" align="center">
         Conversor de Pesos Argentinos a Dolares y viceversa.
       </Typography>
     </Box>

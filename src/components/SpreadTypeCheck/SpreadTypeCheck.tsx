@@ -4,11 +4,20 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-export const SpreadTypeCheck = () => {
+export type SpreadTypeCheckProps = {
+  setSpreadType: any;
+}
+ 
+export const SpreadTypeCheck = ( {setSpreadType} : SpreadTypeCheckProps ) => {
+  const onChange = (event:any) => {
+    setSpreadType(event.target.value)
+  }
+
   return (
-    <FormControl>
+    <FormControl sx={{mt:'3.25rem'}}>
       <FormLabel id="demo-row-radio-buttons-group-label">Tipo de cambio</FormLabel>
       <RadioGroup
+        onChange={(e) => onChange(e)}
         row
         defaultValue="bid"
         aria-labelledby="demo-row-radio-buttons-group-label"

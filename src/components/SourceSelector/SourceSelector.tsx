@@ -1,8 +1,19 @@
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
+import { Source } from 'dolar-exchange-sdk';
 
-export default function SourceSelector() {
+export type SourceSelectorProps = {
+  /**
+   * Source api
+   */
+  setSource: any;
+}
+
+export default function SourceSelector({ setSource }: SourceSelectorProps) {
+  const handleOnchange = (value: string) => { 
+    setSource(value)
+  }
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }}>
       <InputLabel variant="standard" htmlFor="uncontrolled-native">
@@ -14,9 +25,10 @@ export default function SourceSelector() {
           name: 'Fuente',
           id: 'uncontrolled-native',
         }}
+        onChange={ event => handleOnchange(event.target.value)}
       >
-        <option value={10}>DolarSi</option>
-        <option value={20}>DolarHoy</option>
+        <option value={Source.DOLAR_SI}>DolarSi</option>
+        <option value={Source.DOLAR_HOY}>DolarHoy</option>
       </NativeSelect>
     </FormControl>
   );
