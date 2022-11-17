@@ -5,6 +5,7 @@ import { SpreadTypeCheck } from './components/SpreadTypeCheck/SpreadTypeCheck';
 import SourceSelector from './components/SourceSelector/SourceSelector';
 import Header from './components/Header/Header';
 
+import { Box, CircularProgress } from '@mui/material'
 
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
@@ -16,11 +17,10 @@ import { Source } from 'dolar-exchange-sdk';
 
 
 function App() {
-  const [spreadType , setSpreadType ]  = useState<any>('bid')
-  const [source , setSource ]  = useState<any>(Source.DOLAR_SI)
-
+  const [spreadType, setSpreadType] = useState<any>('bid')
+  const [source, setSource] = useState<any>(Source.DOLAR_HOY)
   const FEATURES = {
-    sourceFeature: false,
+    sourceFeature: true,
   }
 
   return (
@@ -33,7 +33,7 @@ function App() {
           </Grid>
           <Grid xs={12} sx={{ px: 5, mt: 4 }} container justifyContent="space-between">
             <SpreadTypeCheck setSpreadType={setSpreadType} />
-            { FEATURES.sourceFeature &&  <SourceSelector  setSource={setSource} />}
+            {FEATURES.sourceFeature && <SourceSelector setSource={setSource} />}
           </Grid>
         </Grid>
         <Divider light sx={{ my: 3 }} />

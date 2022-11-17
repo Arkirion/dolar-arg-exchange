@@ -15,7 +15,7 @@ export default function SourceSelector({ setSource }: SourceSelectorProps) {
     setSource(value)
   }
   return (
-    <FormControl sx={{ m: 1, minWidth: 120 }}>
+    <FormControl sx={{ m: 1, mt: '3.8rem', minWidth: 120 }}>
       <InputLabel variant="standard" htmlFor="uncontrolled-native">
         Fuente
       </InputLabel>
@@ -27,8 +27,8 @@ export default function SourceSelector({ setSource }: SourceSelectorProps) {
         }}
         onChange={ event => handleOnchange(event.target.value)}
       >
-        <option value={Source.DOLAR_SI}>DolarSi</option>
         <option value={Source.DOLAR_HOY}>DolarHoy</option>
+        <option value={Source.DOLAR_SI}>DolarSi</option>
       </NativeSelect>
     </FormControl>
   );

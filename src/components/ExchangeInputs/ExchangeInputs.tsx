@@ -28,21 +28,22 @@ export default function NativeSelectDemo({ spreadType, source }: NativeSelectDem
   const dolarRef = useRef<any>();
   const argsRef = useRef<any>();
 
-  useEffect(() => {
+  const initializeCurrency = async () => {
+    setExchange(null)
     const currency = new Currencies(source);
-    async function fetchPrices() {
-      await currency.initiateData();
-      setExchange(currency)
-    }
+    await currency.initiateData();
+    setExchange(currency)
+  }
 
-    fetchPrices()
+  useEffect(() => {
+    initializeCurrency()
   }, [source])
 
   useEffect(() => {
     if (exchange) {
       handleDollarInput(dolarRef?.current?.value)
     }
-  }, [exchange, spreadType, exchangeType ])
+  }, [exchange, spreadType, exchangeType, source])
 
 
   const handleSourceSelectOnchange = (event: any) => {
@@ -75,7 +76,7 @@ export default function NativeSelectDemo({ spreadType, source }: NativeSelectDem
       {
         exchange ?
           <Grid container spacing={2} justifyContent="space-between" sx={{ mt: '3.25rem' }}>
-            
+
             <Grid xs={12} md={6} display="flex" flexDirection={"column"}>
               <Grid xs={12} sx={{ lineHeight: "1.8px" }} display="flex" justifyContent="center" >
                 <FormControl fullWidth >
@@ -98,6 +99,7 @@ export default function NativeSelectDemo({ spreadType, source }: NativeSelectDem
                     onKeyUp={(event: any) => handleDollarInput(event.target.value as string)}
                     onCopyCapture={(event: any) => handleDollarInput(event.target.value as string)}
                     allowLeadingZeros
+                    allowNegative={false}
                     customInput={TextField}
                     decimalSeparator=","
                     thousandSeparator="."
@@ -105,7 +107,7 @@ export default function NativeSelectDemo({ spreadType, source }: NativeSelectDem
                     autoComplete='off'
                     fullWidth
                     value={dolarPrice}
-                    sx={{ input: { textAlign: "center", fontSize: '3rem' } }}
+                    sx={{ input: { textAlign: "center", fontSize: '3rem' , backgroundColor:'#f1f9f4'} }}
                     isAllowed={({ floatValue }: NumberFormatValues): boolean => floatValue === undefined || floatValue <= MAX_LIMIT}
                   />
                 </FormControl>
@@ -126,6 +128,7 @@ export default function NativeSelectDemo({ spreadType, source }: NativeSelectDem
 
                     onCopyCapture={(event: any) => handleArgsInput(event.target.value as string)}
                     allowLeadingZeros
+                    allowNegative={false}
                     customInput={TextField}
                     decimalSeparator=","
                     thousandSeparator="."
@@ -133,7 +136,7 @@ export default function NativeSelectDemo({ spreadType, source }: NativeSelectDem
                     fullWidth
                     autoComplete='off'
                     value={argsPrice}
-                    sx={{ input: { textAlign: "center", fontSize: '3rem' } }}
+                    sx={{ input: { textAlign: "center", fontSize: '3rem', mt:'2px', backgroundColor:'#f0fbff' } }}
                     isAllowed={({ floatValue }: NumberFormatValues): boolean => floatValue === undefined || floatValue <= MAX_LIMIT}
                   />
                 </FormControl>
@@ -142,7 +145,7 @@ export default function NativeSelectDemo({ spreadType, source }: NativeSelectDem
 
           </Grid>
           : <Grid container spacing={2} justifyContent="center">
-            <Box sx={{ display: 'flex', mt:'4rem' }}>
+            <Box sx={{ display: 'flex', mt: '4rem' }}>
               <CircularProgress size={'7rem'} />
             </Box>
           </Grid>
